@@ -1,0 +1,66 @@
+nodepade++ 使用技巧
+Ctrl + D 快速复制一行到下一行
+Ctrl + T 当前行和上一样互换
+Ctrl + J 把选中的区域放到一行里面，这个非常适合复制别人乱七八糟的代码，我们又想放到一行上
+按住 Ctrl 可以进行多行操作
+按住 Alt  可以选中多行的某一列
+
+VS使用技巧
+Ctrl+U  快速转为小写
+Ctrl+Shift+U 快速转为大写
+
+Anthem_InvokePageMethod（"方法名"，[参数1，参数2,。。。]）
+
+后台
+方法名（参数1，参数2,。。。）
+{
+   return "";
+}
+
+
+
+System.Environment.NewLine     //作用等同于 换行符
+  res.NamingStrategy = null;  // <<!-- 修正默认JSON全部变成小写的问题
+
+srt    操作
+
+ls 查看当前目录所有文件
+cd 文件夹名     打开服务器上该文件夹
+lcd 文件夹名     打开本地电脑上该文件夹
+
+pwd  上传服务器目录
+lpwd  本地文件夹目录
+put  文件名     将本地文件夹下的文件上传到服务器
+dbaccess -e -m  sc_kfzc3q taw_if_cs_15.sql  执行taw_if_cs_15.sql 文件  
+
+
+Number()               //js其他类型转为数字
+
+1、ref和 out修饰参数
+  所修饰参数必须先初始化，ref传递引用，out传递数值
+
+static void Main(string[] args)
+        {
+            int a = 6;
+            int b = 66;
+            Fun(ref a,ref b);
+            Console.WriteLine("a:{0},b:{1}", a, b);//输出:72和6说明传入Fun方法是a和b的引用
+        }
+        static void Fun(ref int a, ref int b) {
+            a = a+b;  //72,说明Main方法的a和b的值传进来了
+            b = 6;
+        }
+
+
+static void Main(string[] args)
+        {
+            int a=100;
+            int b;
+            Fun(out a, out b);
+            Console.WriteLine("a:{0},b:{1}", a, b);//输出:3和1说明out参数传递进去的是a和b的引用,输出3说明a的参数值没有传入Fun方法中
+        }
+        static void Fun(out int a, out int b)
+        {
+            a = 1+2;
+            b = 1;
+        }

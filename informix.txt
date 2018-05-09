@@ -1,0 +1,47 @@
+1、DECODE 和case when 类似
+select  decode(issuccess,'1','成功','0','失败','失败') from tfr_cpw_guide_location
+2、按天分组统计：
+select substr(acceptdate,0,10),count(*) from taw_if_cs group by 1
+
+3、你可以直接用 字段名[1,2] 来访问此字符串字段的头两个字母
+如：select * from web_xxx where zzlb[1,2]='gd' 
+
+select fullcomplain_serialno[1,2]  from taw_if_cs
+
+4、Serial字段就是自增长的
+
+5、转整 cast(count(*) as int)
+
+6、查询前一天的数据
+select * from taw_if_cs where acceptdate > to_char(date(current) - interval(1) day to day,'%Y-%m-%d 00:00:00')
+ and acceptdate < to_char(date(current) - interval(1) day to day,'%Y-%m-%d 23:59:59')
+
+7、备份  插入临时表
+select * from tb_wf_node_answer_r
+into temp tb_wf_node_answer_r2
+
+  插入实体表
+insert into tb_wf_node_answer_r_1
+select * from tb_wf_node_answer_r
+
+8、按照特定顺序排序
+ order by decode(node_type,'手动',1,'子流程',2,'特殊',3,'自动',4,5)
+
+9、sum(case when agree_flag=1 then 1 else 0 end) agree_num,
+
+10、在 XML 中有 5 个预定义的实体引用：
+&lt;	<	小于
+&gt;	>	大于
+&amp;	&	和号
+&apos;	'	省略号
+&quot;	"	引号
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,157 @@
+3005 天津
+1001 四川专业版
+http://192.168.10.6:5707/  测试黑龙江
+黑龙江TV:  768064902  ly123456
+13654654764  13654654839  13654654857  18246004179  15845006700
+
+江西
+http://10.175.120.96:8058/GuideLogin.ashx?Kfuser=86000901&Pass=G4lFK7GImouXtYr
+ pXJsAQ==&Num=101010207093020232&phonenum=15279138823&time=20170930105600&UserIp=10.11.23.19 
+
+互联互通 等  短信  查询服务：53.210
+
+新夜间建单；不限量接口服务   53.213
+客服版  53  54   55
+专业版  214  215
+全量    160
+点对点  219
+投诉分析 216
+全量系统后台服务   167
+投诉分析后台服务   169
+
+中兴测试 13990408145
+msc  13688061804
+
+02 07 08 11 14 23   15
+
+VPN登陆账号：wangzhenxian    004
+Boco@123
+TV jiashaotao   Boco@432
+ 13982284127
+远程teamviewer    209556883 18908043498    15982027735  18782919531
+                  469377929
+                  452032456
+		  
+		  105261149
+******************************************************************************
+陕西系统  administrator/Weigeqing123
+10.131.62.86:3377  数据库
+sn_admin
+Srr,!@6_kfzc
+
+Srr,!@4_kfzc
+
+kfzcboco_123
+TV  382739135    4251
+******************************************************************************
+18381116908
+13572525822
+15029082734
+yy_xuzhenwen   Boco@201706
+yy_jiashaotao  Boco@1234
+
+svn://121.42.168.239/
+
+现场SVN   账号   kfzc_lh 123456
+
+
+服务器 mysql数据库访问地址
+ip:121.42.168.239
+端口:3306
+用户/密码:nscs nscs@1234
+数据库：nscs
+
+"http://(\d{2,3}([.]\d{1,3}){3}|localhost):\d{2,5}"      正则表达式   ip和端口
+
+
+
+
+ cast(sum(decode(a.r_resolveinfo,'未解决',1,0)) as int) as NoSolveCount,
+      cast(sum(decode(a.r_resolveinfo,'解决中',1,0)) as int) as SolvingCount,
+      cast(sum(decode(a.r_resolveinfo,'计划解决',1,0)) as int) as PlanSolveCount,
+      cast(sum(decode(a.r_resolveinfo,'已解决',1,0)) as int) as YetSolveCount,
+
+
+SetStyle(ControlStyles.UserPaint, true);
+SetStyle(ControlStyles.AllPaintingInWmPaint, true); // 禁止擦除背景.
+SetStyle(ControlStyles.DoubleBuffer, true); //双缓冲
+
+SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.SupportsTransparentBackColor, true);
+
+
+1-5 月初   级别1234
+
+6-25 月中
+》26 月某
+
+ select * from tb_wf_flow_node     --主流程节点
+ select * from tb_wf_flow_relation --流程关系
+ select * from tb_wf_flow          --主流程
+ select * from tb_wf_node_answer   --答案
+ select * from tb_wf_node_custom   --自定义节点
+ select * from tb_wf_node_resource --资源节点（手动、子流程）
+ select * from tb_wf_serial   --最新ID编号
+
+
+
+ List<NodeResource> list = new List<NodeResource>();
+            IList<NodeResource> lt = Dao.SelectLastByCond(param);
+            list = lt.Where(x => x.NodeType == "手动").ToList();
+            list.AddRange(lt.Where(x => x.NodeType == "子流程").ToList());
+            list.AddRange(lt.Where(x => x.NodeType == "自动").ToList());
+            list.AddRange(lt.Where(x => x.NodeType == "特殊").ToList());
+            return list;
+
+
+
+
+
+
+
+********************************************************************************************
+服务助手涉及到的表用途
+
+
+
+1、手动节点  图标默认
+2、子流程预览
+3、履历： 子流程影响主流程（递归）  先查出资源表信息递归
+ 
+
+
+tb_wf_node_resource   节点和子流程的资源
+tb_wf_flow  	 主流程管理表
+tb_wf_flow_node   流程配置节点表（主流程 和子流程）
+tb_wf_node_custom   自定义节点
+tb_wf_node_answer    具体的 口径 结束工单 自动 手动 特殊的答案
+tb_wf_flow_relation	  节点连线的关系  具体流程的走向
+	
+tb_wf_serial   流程序号等字典
+
+正式使用的流程运行表：
+tb_wf_flow_r   
+tb_wf_flow_node_r     
+tb_wf_node_answer_r
+tb_wf_flow_relation_r
+
+
+  X86_改造全量系统地址：  http://10.102.45.160:2323;
+
+Data Source=(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST =10.102.45.48)(PORT = 1521)) (ADDRESS = (PROTOCOL = TCP)(HOST =10.102.45.49)(PORT = 1521))) (LOAD_BALANCE = yes) (CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = kfzcfr) ) );User ID=kfzccx;Password=Yus#632kffr;
+
+
+kfzc3q数据库（全量、投诉关联分析）：kfzcywl/Yus#632kf3q;
+fr数据库（专业版与客服版）： kfzccx/Yus#632kffr;
+sms数据库：kfzcsms/Yus#632K
+
+
+BTS（2G）、nodeb（3G）、enodeb（4G）（表示基站）
+
+http://api.map.baidu.com/place/v2/search?q=饭店&region=成都&output=json&ak=PArWGPDzts63GQjLwgH1aY8TMwqOGYb5
+
+
+http://api.map.baidu.com/place/v2/search?query=酒店&page_size=10&page_num=0&scope=1&location=39.915,116.404&radius=2000&output=json&ak=PArWGPDzts63GQjLwgH1aY8TMwqOGYb5
+
+
+
+http://restapi.amap.com/v3/geocode/regeo?output=xml&location=104.074091,30.658079&key=0bbc27d0100b4a268e683e51653c8ed3&radius=1000&extensions=all&homeorcorp=2

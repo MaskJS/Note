@@ -1,0 +1,28 @@
+﻿1.例如 p元素，里面的文字不换行显示，超出部分不隐藏
+p{
+  width:100px;
+  word-break:keep-all;
+  white-space:nowrap;     
+}
+
+2.例如 p元素，里面的文字不换行，超出部分用省略号代替
+p{
+  width:100px;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis; 
+}
+
+3.white-space: nowrap;   //文字同行显示，不进行换行
+
+4.lint-style:none;       //ul li   去掉前面的点
+
+5.table 显示边框
+	.table {
+				border-collapse: collapse;
+				text-align:center;
+			}
+	.table td {
+		border: 1px solid rgba(183, 210, 255, 1);
+	}

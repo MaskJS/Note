@@ -1,0 +1,88 @@
+1、给分组加序号  Row_number()
+    Row_number() over(order by phone)
+
+2、分析函数PARTITION   BY
+   group by更强调的是一个整体，就是组，只能显示一个组里满足聚合函数的一条记录， partition by 在整体后更强调个体，能显示组里所有个体的记录
+
+   eg: 取view_wirelessclub表中crdate最大且level1不重复的数据
+   select row_number() over(PARTITION   BY level1 order by crdate desc) num,crdate,level1 from view_wirelessclub
+   num=1的数据，即各level1下最大的数据 4,3,5
+
+3、建自增序列
+   CREATE SEQUENCE 序列名称 INCREMENT BY 1 START WITH 1;
+
+   序列名称.NEXTVAL
+4、创建表空间： create tablespace file_data  
+       logging  
+       datafile 'D:\oracledata\file_data.dbf' 
+       size 50m  
+       autoextend on  
+       next 50m maxsize 2048m  
+       extent management local; 
+
+5、创建用户并给用户分配表空间：
+ create user file_username identified by 12345678    -- ‘file_username’ 为创建的用户名  ；‘12345678’为创建的新用户登录密码
+       default tablespace file_data  
+       temporary tablespace file_temp;
+
+6、sql优化
+   1.oracle解析器从右到左处理FROM子句的表名，即最右边的表为基础表，所以最后的表要选择数据少的作为基础表
+   2.Oracle采用自下而上的顺序解析WHERE子句，所以可以过滤掉最大数量记录的条件必须写在WHERE子句的末尾
+   3.SELECT子句中避免使用‘*’，在解析的过程中, 会将‘*’依次转换成所有的列名, 这个工作是通过查询数据字典完成的, 这意味着将耗费更多的时间
+  *4.用TRUNCATE替代DELETE
+   5.使用表的别名(Alias)，当在SQL语句中连接多个表时, 请使用表的别名并把别名前缀于每个Column上。这样一来,就可以减少解析的时间并减少那些由Column歧义引起的语法错误
+   6.用EXISTS替代IN、用NOT EXISTS替代NOT IN
+   7.SQL语句用大写的；因为Oracle总是先解析SQL语句，把小写的字母转换成大写的再执行
+   8.避免在索引列上使用NOT通常，我们要避免在索引列上使用NOT, NOT会产生在和在索引列上使用函数相同的影响。当Oracle“遇到”NOT,他就会停止使用索引转而执行全表扫描
+   9.避免在索引列上使用计算。WHERE子句中，如果索引列是函数的一部分。优化器将不使用索引而使用全表扫描
+     eg:低效： SELECT … FROM DEPT WHERE SAL * 12 > 25000; 高效: SELECT … FROM DEPT WHERE SAL > 25000/12
+   10.用>=替代>  两者的区别在于，前者DBMS将直接跳到第一个DEPT等于4的记录而后者将首先定位到DEPTNO=3的记录并且向前扫描到第一个DEPT大于3的记 录
+   11.用UNION替换OR (适用于索引列)
+   12.避免在索引列上使用IS NULL和IS NOT NULL：避免在索引中使用任何可以为空的列，Oracle将无法使用该索引。对于单列索引，如果列包含空值，索引中将不存在此记录。对于复合索引，如果每个列都为 空，索引中同样不存在此记录
+   13.总是使用索引的第一个列： 如果索引是建立在多个列上，只有在它的第一个列(leading column)被where子句引用时，优化器才会选择使用该索引。这也是一条简单而重要的规则，当仅引用索引的第二个列时，优化器使用了全表扫描而忽略 了索引。
+   14.优化GROUP BY 提高GROUP BY 语句的效率，可以通过将不需要的记录在GROUP BY 之前过滤掉。下面两个查询返回相同结果但第二个明显就快了许多
+
+7、删除表中某一列
+   alter table 表名 drop column 列名
+
+8、>, <, >=, <= (gt, lt, ge, le)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
