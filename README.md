@@ -1,5 +1,4 @@
-# Note
-学习记录
+# Note 学习记录
 
 Java
 
