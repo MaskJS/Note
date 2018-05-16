@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="ModeWar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ModeWar</output-path>
+    <root id="archive" name="ModeWar.war">
+      <element id="dir-copy" path="$PROJECT_DIR$/out/artifacts" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Singleton Partern" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
