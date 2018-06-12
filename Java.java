@@ -99,7 +99,7 @@
    
 7、不定长度参数 ...
    不定参数有两个规定：第一，方法的参数列表中最多只有一个不定长度的参数；第二，就是不定长度的数组的位置必须是最后一个参数。不然不能通过编译。
-public class VariArgs {  
+   public class VariArgs {  
   
     public static void main(String[] args) {  
         test("aaa");  
@@ -154,8 +154,31 @@ http://blog.csdn.net/lonely_fireworks/article/details/7962171/
         return instance;  
     } 
      
-   
+12、 单精度和双精度
+float型float f=3.4是否正确    --错误，因为3.4是double类型， 大范围不能向小范围转换，应该用强制转换，即： float f=(float)3.4
+
+在java里面，没小数点的默认是int,有小数点的默认是 double;    
+
+
+基本数据类型 		包装类
+byte  				Byte
+boolean				Boolean
+short				Short
+char				Character
+int					Integer
+long				Long
+float				Float
+double				Double  
 }	
+valueOf() 装箱
+intValue() 拆箱
+
+13、
+
+
+
+
+
 五、文件操作
 {
 1、java中获取当前根目录文件   
@@ -193,6 +216,7 @@ http://blog.csdn.net/lonely_fireworks/article/details/7962171/
 	
 	2)、"catalina.home" Tomcat 安装目录，一般是用来查找库 jar 的
 	System.getProperty("catalina.home")
+	
 	
 	********************************************************************************************************************************
 	System.out.println("java版本号：" + System.getProperty("java.version")); // java版本号
@@ -304,11 +328,30 @@ Spring常用注解汇总
 @Async异步方法调用 
    
    
-   
+//注意导入的包都是slf4j的包
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class LogbackTest {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(LogbackTest.class);
+
+    public static void main(String[] args) {
+        LOGGER.trace("logback的--trace日志--输出了");
+        LOGGER.debug("logback的--debug日志--输出了");
+        LOGGER.info("logback的--info日志--输出了");
+        LOGGER.warn("logback的--warn日志--输出了");
+        LOGGER.error("logback的--error日志--输出了");
+    }
+
+}   
 
 
-
-
+八、java打包区别
+war包:是做好一个web应用后，通常是网站，打成包部署到容器中。
+jar包：通常是开发时要引用通用类，打成包便于存放管理。
+ear包：企业级应用，通常是EJB打成ear包。
+war是一个web模块，其中需要包括WEB-INF，是可以直接运行的WEB模块。而jar一般只是包括一些class文件，在声明了Main_class之后是可以用java命令运行的.
 
 
 

@@ -1,0 +1,29 @@
+1、删除tfr_infopub_ne、tb_nc_back_service_alarm表中对应的数据；
+
+select  * from tfr_infopub_ne where start_time='2017-08-11 00:08:14';
+delete from tfr_infopub_ne where pub_id='207774';
+
+select  * from  tb_nc_back_service_alarm 
+delete from tb_nc_back_service_alarm where
+
+
+2、在IE中分别加入下面的参数进行接口调用
+http://192.168.10.6:8512/WebService/AlarmService.asmx
+
+
+****【【查看C:\sqllog\ 下的日志】】
+
+xazhongxinhuningtyxgsNG-XAH106-0
+ biaozhun
+【发生】执行后，存入tb_nc_back_service_alarm表
+
+
+xazhongxinhuningtyxgsNG-XAH106-0
+ biaozhun
+{"Alarm_fingerprint":"3931930998_150421708_2234698647_3513385638","Alarm_Cancelfingerprint":"3931930998_150421708_2234698647_3513385638", "Element_name":"xazhongxinhuningtyxgsNG-XAH106","Alarm_title":"[衍生告警]S1ap链路故障衍生基站退服", "Alarm_level":"二级告警","Alarm_objecttype":"4G基站","Alarm_status":"未清除","Alarm_starttime":"2017-08-11 00:08:14","Alarm_owncity":"咸阳地区", "Alarm_owntown":"雁塔区","Alarm_projectstatus":"现网工程","Alarm_projectname":"","Alarm_projectstarttime":"","Alarm_projecendtime":""}
+
+
+【派单】执行后，存入tfr_infopub_ne表
+
+{"Alarm_fingerprint":"3931930998_150421708_2234698647_3513385639","Alarm_Cancelfingerprint":"3931930998_150421708_2234698647_3513385637","Alarm_Distributestatus":"派单成功","Alarm_orderstatus":"","Alarm_ordername":"SN-055-170811-00048"}
+

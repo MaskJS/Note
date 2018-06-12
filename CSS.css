@@ -26,3 +26,25 @@ p{
 	.table td {
 		border: 1px solid rgba(183, 210, 255, 1);
 	}
+
+6.响应式布局 @media
+
+如果文档宽度小于等于 300px 则应用花括号内的样式——修改body的背景颜色(background-color)
+@media screen and (max-width: 300px) {
+    body {
+        background-color:lightblue;
+    }
+}	
+当文档宽度大于等于300px 的时候显示的样式
+@media screen and (min-width: 300px){
+    body {
+        background-color:lightblue;
+    }
+}
+当文档宽度大于等于 300px 并且小于等于500px （ width >=300 && width <=500）的时候显示的样式
+@media screen and (min-width:300px) and (max-width:500px) {
+    /* CSS 代码 */
+}	
+	
+7.  csshover.htc文件可以解决ie6下hover不兼容问题
+body{behavior:url(css/csshover.htc);} 	

@@ -17,6 +17,7 @@ Anthem_InvokePageMethod（"方法名"，[参数1，参数2,。。。]）
    return "";
 }
 
+<![CDATA[           ]]>
 
 
 System.Environment.NewLine     //作用等同于 换行符
@@ -64,3 +65,17 @@ static void Main(string[] args)
             a = 1+2;
             b = 1;
         }
+
+2、字符串分割：Regex.Split(str,"js",RegexOptions.IgnoreCase);
+
+3、泛型约束
+where T : struct                               | T必须是一个结构类型
+where T : class                               | T必须是一个类（class）类型，不能是结构(structure)类型   引用类型
+where T : new()                               | T必须要有一个无参构造函数    可以被new（）
+where T : NameOfBaseClass          | T必须继承名为NameOfBaseClass的类
+where T : NameOfInterface             | T必须实现名为NameOfInterface的接口
+eg:
+public abstract class DAOServiceBase<T> where T : class
+{
+  ...
+}

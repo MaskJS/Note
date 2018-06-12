@@ -54,6 +54,11 @@ error：要求为Function类型的参数，请求失败时被调用的函数。该函数有3个参数，即XMLH
        function(XMLHttpRequest, textStatus, errorThrown){
           //通常情况下textStatus和errorThrown只有其中一个包含信息
           this;   //调用本次ajax请求时传递的options参数
+
+		   $("div").html(textStatus);
+		   $("div").append("<br/>"XMLHttpRequest.status);
+		   $("div").append("<br/>"XMLHttpRequest.readyState);
+		   $("div").append("<br/>"XMLHttpRequest.responseText);
        }
 contentType：要求为String类型的参数，当发送信息至服务器时，内容编码类型默认
              为"application/x-www-form-urlencoded"。该默认值适合大多数应用场合。
@@ -202,12 +207,37 @@ alert('name:' + localStorage.myName + '\rsite:' + localStorage['mySite']);
 
 12.去掉所有空格  str.replace(/ /g,'')
 
-
-
-
-
-
-
+13.   JSON.stringify(参数1[，参数2，参数3])  函数用法，主要是将json字符串转为json对象
+    （1）参数1必须填，即为需要转化的字符串
+	（2）参数2可以为函数和数组，为函数时会将对应的字符串传到函数中然后返回
+		 为数组时，如参数1为数组则参数2数组会忽略，如参数1位对象则会是如下情况
+		var students = new Object();
+		students.name = "pika";
+		students.age = 19;
+		students.qq = "12345678";
+		var stu= new Array();
+		stu[0] = "name";
+		stu[1] = "qq";
+		var json = JSON.stringify(students,stu);
+		alert(json);
+		//输出结果：{"name":"pika","qq":"12345678"}
+     （3）参数3为缩进单位，eg:
+		    var students = new Object();
+			students.name = "pika";
+			students.age = 19;
+			students.qq = "12345678";
+			var stu= new Array();
+			stu[0] = "name";
+			stu[1] = "qq";
+			var json = JSON.stringify(students,stu,"test")
+			alert(json);
+			/* 输出结果：
+			{
+			test"name": "pika",
+			test"qq": "12345678"
+			}
+			*/
+    
 
 
 

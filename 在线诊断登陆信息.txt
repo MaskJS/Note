@@ -1,0 +1,302 @@
+﻿1、VPN    
+https://211.142.21.253/prx/000/http/localhost/login 
+管控： http://10.210.81.47:9080/casp/page/index.jsp
+
+VPN账号：
+cs_liuxin7  密码：bocoliuxin
+cs_fanshijun    密码cs_fanshijun
+bocoliyun   密码 cmccr00t
+bocogongbingrui    密码 cmccr00t
+bocochenjiamin   密码    3093680  
+
+
+2、管控账号：（可以多人一起使用）
+cs_liuxin7   密码：BOCO123. 
+cs_fanshijun    密码   Cs_fanshi5
+bocoliyun   !@34niko   
+bocogongbingrui  cmccr00t2
+
+有问题的正式服务器：10.231.251.18    
+调试的时候使用18服务器上面端口为4444的测试站点，全方位的web端口是8066
+
+另外，可参照结案向导正常的测试服务器：10.204.50.239   密码： Cs#239  
+流程向导站点IIS端口：4444
+快速结案向导测试站点：http://10.204.50.239:8080/NetCareView/RelationalQuery/TextRelationalQuery.aspx?account=aakfnr&function=TextQuery&Sx_userid=aakfxh&Sx_username=%E7%84%A6%E6%96%87%E9%9C%9E&Sx_userip=10.204.51.44&Sx_recordnumber=2017041507155604616&Sx_phonenumber=13503593227&Sx_version=0&serverIp=10.204.50.239&serverPort=1000
+快速结案向导是嵌入全方位的
+全方位IIS端口8080：http://10.204.50.239:8080/
+用户名/密码：administrator  admints112
+快速结案向导可用的电话号码：
+13734080501    18435163249     13503593227
+18735183063     
+18234074010这个是华为IMS的:
+18435639834这个是华为HSS    测试
+13834169088 这个是用户的         
+用BOSS接口调用成功的号码18435398359  18735183063   13700509495
+
+
+
+
+
+
+派单测试过程会用到的最新sql： 
+select * from taw_nscs_callcause_log where   recordnumber = '2017041818021274549'; customphone='20103598998'    account='18295992108'  servicetype='1001161306020204'
+update taw_nscs_callcause_log set serialno='',handleflag='0',account='18234091419',servicetype='1001160103990105'  where recordnumber = '2017041818021274549' 
+update taw_nscs_callcause_log set serialno='记录到缓存池',handleflag='2',account='18295992108',servicetype='1001161306020204'  where recordnumber = '2017041818021274549' 
+    
+ select  * from tb_nc_comp where kd_phone_no = '20103598998'and     serialno='咨询节点，未生成工单'comptype='77'
+delete from tb_nc_comp  where     kd_phone_no = '20213502965' and comptype='77'
+ 
+ select * from tb_nc_sheet_pool where customphone ='20103598998' and account='18234091419'
+
+派单测试过程会用到的sql：
+select * from tb_nc_comp order  by acceptdate desc     where      compphone= '13935920259'--hung_status='未处理' and comptype='77'  order by acceptdate desc
+
+select * from tb_nc_sheet_pool where account='15103402109'
+select *  from tb_nc_sheet_pool  where  customphone='20123546301' 
+delete  from tb_nc_sheet_pool where customphone='20123546301' and userid='administrator'
+
+select * from taw_nscs_callcause_log  where   recordnumber='2016101315390304609'   -- customphone='20123546301'
+delete from taw_nscs_callcause_log  where   recordnumber='2016101315390304609'
+update   taw_nscs_callcause_log  set   handleflag='1' where   customphone='20123546301' 
+   update   taw_nscs_callcause_log   set serialno=''   where   customphone='20123546301'
+   
+select * from tb_nc_comp  where     sx_recordnumber='2016101315390304609'--customphone='20173571754'
+delete from tb_nc_comp  where     sx_recordnumber='2016101315390304609' and comptype='77'
+
+调用来电原因接口，然后将信息记录到来电原因表中taw_nscs_callcause_log，
+handleflag=0，表示未处理，handleflag=1.表示调用来电原因接口成功，handleflag=2，表示下发工单完成，将工单信息生成在工单表中
+
+点这个挂起单的时候，要注意select *  from tb_nc_sheet_pool 这个工单缓存池表   挂起的时候要给这个表，生成一条数据，测试生成了过后要及时删掉
+
+查询预处理（挂起）工单：select first 20 * from tb_nc_comp where comptype = '77' and sx_tabtype='宽带'   order by acceptdate desc
+查询在途工单：select first 20 * from tb_nc_comp where comptype = '20' and sx_tabtype='宽带'   order by acceptdate desc
+查询欠费的号码： select   * from taw_nscs_callcause_log where pretreatmentdesc like '%判断账号是否欠费？？宽带欠费%' order by faulttime desc
+查询有公告的号码：select kd_phone_no,* from tb_nc_comp where compcontent  like '%有公告，%'  and updatetime>'2017-07-17 13:00:00' 多查几个
+查询装机7天内有投诉的号码：select kd_phone_no,* from tb_nc_comp  where compcontent like '%装机后7天（无公告、无OLT告警）%' and updatetime > '2017-07-21 00:00:00'
+家宽用户信息表：tb_familywb_customer
+
+测试数据库：nscstest    nscsgistest，山西现场的测试数据库，对应的密码与正式的一样，测试的时候用测试数据库
+请在IIS中 更改dao.config   （现测试服务器WEB联的是正式库）
+
+10.231.251.19\20, Cs#19 现场正式环境 8009
+
+家宽告警采集在20上，
+nscsgis----全方位正式库
+InformixSql_****_*_*_*.txt 是全方位的sql日志，其他的是预处理页面的日志
+
+4、数据库服务器： 10.204.50.249    连接已经配置在服务器上数据工具上了。
+ 如需要单独登录249 ，可在认证平台 同登录239方法登录
+
+5、Web登录用户名/密码：administrator/admints112
+http://10.204.50.239:8089/
+
+6、采集服务器：10.204.50.140  密码 1q2w3e!@#
+
+360家宽预处理、361快速结案向导
+
+7、测试ivr的接口：http://10.204.50.239:8111/HomeNetwork/Services/KFSyncIVRService.asmx
+
+8、现场工单测试接口: http://10.210.85.2:8188/WorkSheetService.asmx
+
+9.查询有预处理工单的sql(找对应的家宽账号):
+select
+KD_PHONE_NO
+from nscsgis@tsqyserver:tb_nc_comp
+where comptype='77' and (hung_status !='已处理' or hung_status is null)
+
+10.注意：改一下239上测试环境的目录，从现网上19的服务器上拷贝过来的正式环境，修改配置，
+然后再更新的版本，这样可以确认一下在现网的基础上更新，基本的问题有没有，从同步了测试环境和正式环境.
+每次开发提供一个新的版本号的时候，都这样做一下.
+
+
+11.查看流程向导接口是否是通的：noteservice.asmx---getflow---网络覆盖
+
+
+2016-07-26 21:20:36
+
+  477311
+\\tsclient   
+rdpclip.exe
+     VOLTE溯源采集服务_v1.0
+
+  13935398689             20103533377  （没有异常，是pon用户）
+
+         15235316040             20123536418  （没有异常，非pon用户）
+
+13994476517
+
+有群障信息的数据：20113597125
+
+通过专业版进入预处理页面
+
+1、家宽预处理页面加载，需要12秒左右、
+2、家宽预处理页面查询，查询响应时间需要30秒左右
+优化后：
+1、单独访问访问连接，进入家宽预处理页面，页面加载耗时需要4秒左右；通过专业版进入家宽预处理页面，页面加载耗时需要7秒左右
+2、家宽预处理页面查询，查询响应时间需要28秒左右
+3、在ie6上操作，仍然出现卡顿现象
+
+
+
+
+
+
+http://10.204.50.239:8080/NetCareView/RelationalQuery/TextRelationalQuery.aspx
+
+
+
+
+
+何丽(820795154) 2016/7/18 16:48:36
+建议明天看下错误日志里面有没有
+
+如果没有，采集应该就没问题了
+熊艳辉(2362583918) 2016/7/18 16:49:09
+ok
+何丽(820795154) 2016/7/18 16:49:42
+今天王超是手动把临时表替换成的正式表
+熊艳辉(2362583918) 2016/7/18 16:50:23
+明天还看看是否能够自动把临时表替换成正式表
+何丽(820795154) 2016/7/18 16:50:53
+那个错误日志就是导致临时表没有替换成正式表的原因
+熊艳辉(2362583918) 2016/7/18 16:51:02
+哦
+临时表表名是多少
+何丽(820795154) 2016/7/18 16:52:23
+tb_familywb_customer_temp
+正式表是tb_familywb_customer
+熊艳辉(2362583918) 2016/7/18 16:52:38
+ok
+何丽(820795154) 2016/7/18 16:54:42
+如果19号进行了家宽用户的全量采集，那么在140 的E:\SX_Familywb_collect\Data\    可以看见全量采集的文件
+熊艳辉(2362583918) 2016/7/18 16:55:21
+哦
+何丽(820795154) 2016/7/18 16:55:24
+jiake_customer _20160718
+
+何丽(820795154)  16:55:36
+错了，是jiake_customer _20160719
+何丽(820795154)  16:56:09
+如果有这个文件，然后没有之前说的报错，应该就是对的
+超人应该都清楚那个采集了，不明白可以问他
+何丽(820795154)  16:58:14
+采集就是需求里面的这4个
+何丽(820795154)  16:59:52
+还有个告警数据 TB_FAMILYWB_ALARM 的采集，在另外的服务器上：10.231.251.20  
+D:\山西家宽告警socket采集\bin\JLWarningServ.exe
+
+
+
+20135639824  jclhycblzcbl057  13835630522
+
+
+10.209.250.140 
+E:\山西家宽预处理采集升级_v20160913\山西家宽用户信息、ONU设备资源采集_v1.0
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+公司：亿阳信通
+工作地点：成都市成华区双庆路10号华润大厦7楼 
+
+招聘初级测试人员2枚，应届毕业生均可
+
+任职资格：
+1、  计算机相关专业，学历本科；
+
+2、  熟悉相关开发语言，比如c# 、c++ .net等语言；
+
+3、  了解Oracle、informix、SQL Server 等数据库，掌握基本命令语句；
+
+4、  熟悉 Linux和Unix操作系统的优先；
+
+5、 良好的综合素质，严谨的逻辑思维能力，有志于从事专业的软件测试工作，有软件测试天赋尤佳；
+
+6、 学习能力强，思维敏捷；对新技术感兴趣, 有钻研和开拓精神；
+
+7、 做事细致、责任心强，工作勤奋主动，服从上级安排，具有团队协作精神 
+
+岗位职责:
+
+1、对系统软件进行功能性、非功能性等方面测试，寻找其中的Bug并记录提交到Bug数据库，保证版本质量和进度；
+2、根据需求文档编写测试用例以及不定期更新测试相关模块的测试用例；
+3、负责和Bug直接相关人员解释说明问题，重现Bug，协助开发人员修改Bug，进行Bug跟踪和回归测试，直到Bug解决；
+4、编写详细的测试报告，并从功能性、非功能性、用户体验、数值、界面等方面进行分析并提出测试意见；
+
+5、版本发布以及发布后协助配合省端进行软件的部署；提升用户使用感知；
+
+
+
+
+select * from tb_familywb_alarm  where
+   event_time <=  '2016-09-28 15:33:23'
+  AND
+  event_time >=  '2016-09-26 15:33:17'  and  id='4080377'
+
+
+
+select * from tb_nc_comp where city =  '晋中'  and  id='172138'
+
+
+
+
+
+
+select * from tb_familywb_alarm  where   objectclass=2011  and event_time>'2016-09-20 21:18:19'  and event_time<'2016-10-01 21:18:19'   and  uuid='UUID:dabf2040-b1e6-11e3-956f-0050569908fd'
+
+  AND
+  event_time >=  '2016-09-26 15:33:17'  and  id='4080377'
+
+UUID:dabf2040-b1e6-11e3-956f-0050569908fd
+
+
+select * from TB_FAMILYWB_OLT where uuid='UUID:dabf2040-b1e6-11e3-956f-0050569908fd'
+
+OLTID:200136746
+
+
+
+select * from TB_FAMILYWB_ONU where     related_olt_cuid_t='UUID:dabf2040-b1e6-1'
+
+UUID:a1850ae7-9d55-1     26644026
+
+select * from TB_FAMILYWB_CUSTOMER where hold_device_id='16711532'
+
+20123577823
+
+alter table TB_FAMILYWB_ONU modify related_olt_cuid_t  VARCHAR(50); 
+alter table TB_FAMILYWB_ONU modify opticalsplitter_cuid_t  VARCHAR(50); 
+
+alter table TB_FAMILYWB_ONU modify related_room_cuid_t  VARCHAR(50); 
+
+
+select
+
+*
+from tb_nc_comp a
+join tb_familywb_alarm b on a.alarmstaid = b.alarm_jzgzid
+
+ where
+      a.acceptdate <=  '2016-10-08 10:44:40'
+    AND
+     a.acceptdate >=  '2016-08-07 10:44:40'
+
+
+

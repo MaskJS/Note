@@ -12,6 +12,23 @@
    CREATE SEQUENCE 序列名称 INCREMENT BY 1 START WITH 1;
 
    序列名称.NEXTVAL
+   
+   建触发器：
+	   create or replace trigger 触发器名称 before insert
+	on 表名 for each row
+	declare
+		integrity_error  exception;
+		errno            integer;
+		errmsg           char(200);
+		dummy            integer;
+		found            boolean;
+	begin
+		select 序列名称.NEXTVAL INTO :new.id from dual;
+	exception
+		when integrity_error then
+		   raise_application_error(errno, errmsg);
+	end;
+
 4、创建表空间： create tablespace file_data  
        logging  
        datafile 'D:\oracledata\file_data.dbf' 
@@ -44,13 +61,26 @@
 
 7、删除表中某一列
    alter table 表名 drop column 列名
+    
+   修改：  alter table 表名 modify (列名 类型(50)) eg: ALTER TABLE TB_NC_NETWORK_LOWAWARENESS MODIFY (onuOutLineScale VARCHAR2(50))
 
 8、>, <, >=, <= (gt, lt, ge, le)
 
+9、delete 与 truncate 应用区别：
+
+	1、对于删除整个表的所有数据时，delete并不会释放表所占用的空间
+
+	2、如果用户确定是 删除 整表的所有数据，那么使用 truncate table 速度更快
 
 
-
-
+10、mybatis批量操作
+    <insert id="insertByBatch" parameterType="java.util.List">
+        insert into attachment_table (name, logID,url)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.name,jdbcType=VARCHAR}, #{item.logid,jdbcType=INTEGER},#{item.url,jdbcType=LONGVARCHAR})
+        </foreach>
+    </insert>
 
 
 
